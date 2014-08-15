@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-6.5
+    driver_config:
+      box: chef/centos-6.5
+      network:
+        - [public_network, bridge: 'en0: Wi-Fi (AirPort)']
+      customize:
+        cpus: 2
+        memory: 3024
+        cpuexecutioncap: 100
+
+suites:
+  - name: deployer
+    run_list:
+      - recipe[deployer]
