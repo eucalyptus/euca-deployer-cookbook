@@ -13,7 +13,7 @@
   },
   "ssh": {
     "user": "root",
-    "password": "foobar",
+    "password": "<%= node['deployer']['default-password'] %>",
     "keys": ["/root/.ssh/id_rsa"],
     "sudo": false,
     "timeout": 10.0,
