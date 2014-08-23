@@ -21,38 +21,25 @@ execute 'python setup.py install' do
   cwd eutester_directory
 end
 
-share_tarball = "#{share_directory}/jenkins-share-v1.tgz"
-remote_file share_tarball do
-  source "http://jenkins-share.walrus.cloud.qa1.eucalyptus-systems.com:8773/jenkins-share-v1.tgz"
+package "perl-CPAN"
+perl_directory = "#{share_directory}/perl_lib"
+directory perl_directory
+eucatest_directory = "#{perl_directory}/EucaTest"
+git eucatest_directory do
+  repository node['EucaTest']['git-repository']
+  revision node['EucaTest']['git-revision']
+  action :sync
+end
+%w{Net::OpenSSH}.each do |module_name|
+  cpan_client module_name do
+      action 'install'
+      install_type 'cpan_module'
+  end
 end
 
-execute "tar xzfv #{share_tarball}" do
-  cwd share_directory
-end
-
-bash "Pull in latest EucaTest repo" do
-  user "root"
-  cwd share_directory
-  code <<-EOH
-  pushd perl_lib/EucaTest
-  git remote rm origin
-  git remote add origin https://github.com/viglesiasce/EucaTest.git
-  git stash
-  git pull origin master
-  popd
-  EOH
-end
-
-bash "Refresh eutester virtualenv" do
-  user "root"
-  cwd share_directory
-  code <<-EOH
-  rm -rf eutester-base/
-  virtualenv eutester-base
-  source eutester-base/bin/activate
-  pushd eutester
-  python setup.py install
-  popd
-  deactivate
-  EOH
+eutester_base_directory = "#{share_directory}/eutester-base"
+python_virtualenv eutester_base_directory
+python_pip "eutester" do
+  virtualenv eutester_base_directory
+  action :install
 end
