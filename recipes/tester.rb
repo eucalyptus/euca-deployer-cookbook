@@ -1,5 +1,13 @@
 include_recipe "ntp"
 
+bash "Add internal git repo ssh key" do
+  code <<-EOH
+  if ! grep git.eucalyptus-systems.com /root/.ssh/known_hosts;then
+       ssh-keyscan git.eucalyptus-systems.com >> /root/.ssh/known_hosts
+  fi
+  EOH
+end
+
 %w{wget unzip apache-ivy ant-junit ant-trax}.each do |package_name|
   package package_name
 end
