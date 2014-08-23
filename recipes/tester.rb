@@ -51,5 +51,6 @@ eutester_base_directory = "#{share_directory}/eutester-base"
 python_virtualenv eutester_base_directory
 python_pip "eutester" do
   virtualenv eutester_base_directory
+  options "--pre"
   action :install
 end
