@@ -8,4 +8,4 @@
 #
 
 include_recipe "deployer::deploy"
-include_recipe "deployer::eutester"
+include_recipe "deployer::tester"
