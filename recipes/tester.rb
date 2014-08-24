@@ -41,7 +41,7 @@ git eucatest_directory do
   action :sync
 end
 execute "Symlink EucaTest into path" do
-  command "ln -sf #{eucatest_directory}/lib/EucaTest.pm /usr/local/lib64/perl5/"
+  command "ln -sf #{eucatest_directory}/lib/EucaTest.pm /usr/lib64/perl5/auto/"
 end
 %w{Net::OpenSSH Time::HiRes}.each do |module_name|
   cpan_client module_name do
