@@ -6,6 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-
+include_recipe "java"
 include_recipe "deployer::deploy"
 include_recipe "deployer::tester"
