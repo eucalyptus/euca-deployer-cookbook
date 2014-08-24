@@ -40,7 +40,10 @@ git eucatest_directory do
   revision node['EucaTest']['git-revision']
   action :sync
 end
-%w{Net::OpenSSH}.each do |module_name|
+execute "Symlink EucaTest into path" do
+  command "ln -sf #{eucatest_directory}/lib/EucaTest.pm /usr/local/lib64/perl5/"
+end
+%w{Net::OpenSSH Time::HiRes}.each do |module_name|
   cpan_client module_name do
       action 'install'
       install_type 'cpan_module'
