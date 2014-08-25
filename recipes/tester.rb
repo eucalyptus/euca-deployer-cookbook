@@ -40,7 +40,7 @@ git eucatest_directory do
   revision node['EucaTest']['git-revision']
   action :sync
 end
-%w{Net::OpenSSH Time::HiRes}.each do |module_name|
+%w{Net::OpenSSH Time::HiRes IO::Pty}.each do |module_name|
   cpan_client module_name do
       action 'install'
       install_type 'cpan_module'
