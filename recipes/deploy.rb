@@ -47,3 +47,4 @@ template "/root/.mb/config.json" do
 end
 
 python_pip "paramiko"
+python_pip "pychef"
