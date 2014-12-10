@@ -59,3 +59,5 @@ end
 
 python_pip "paramiko"
 python_pip "pychef"
+python_pip "fabric"
+python_pip "PyYaml"
