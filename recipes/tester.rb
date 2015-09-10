@@ -57,3 +57,10 @@ python_pip "eutester" do
   options "--pre"
   action :install
 end
+
+# We need to update nss package on tester slaves due to JDK7 SSL issue that
+# caused eutester4j suite to fail when trying to fetch YouAreSDK
+# More info at http://blog.backslasher.net/java-ssl-crash.html
+package 'nss' do
+  action :upgrade
+end
