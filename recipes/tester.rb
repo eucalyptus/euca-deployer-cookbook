@@ -10,7 +10,7 @@ include_recipe "ntp"
   end
 end
 
-%w{wget unzip apache-ivy ant-junit ant-trax}.each do |package_name|
+%w{wget unzip apache-ivy ant-junit ant}.each do |package_name|
   package package_name
 end
 
