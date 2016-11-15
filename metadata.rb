@@ -1,10 +1,10 @@
 name             'deployer'
 maintainer       'Eucalyptus Systems'
-maintainer_email 'vic.iglesias@eucalyptus.com'
+maintainer_email 'tbex@hpe.com'
 license          'Apache 2'
 description      'Installs/Configures Deployer jenkins instance'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.12'
+version          '0.2.14'
 depends  'python'
 depends  'rbenv'
 depends  'ntp'
